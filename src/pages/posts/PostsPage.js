@@ -17,11 +17,12 @@ function PostsPage({message, filter = ""}) {
   const [posts, setPosts] = useState({ results: [] })
   const [hasLoaded, setHasloaded] = useState(false)
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       try {
-        const {data} = await axiosReq.get(`/posts/?${filter}`)
+        const {data} = await axiosReq.get(`/posts/?${filter}search=${query}`)
         setPosts(data)
         setHasloaded(true)
       } catch(err) {
@@ -30,13 +31,29 @@ function PostsPage({message, filter = ""}) {
     }
 
     setHasloaded(false)
-    fetchPost()
-  }, [filter, pathname])
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 800)
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [filter, query, pathname])
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form className={styles.SearchBar} onSubmit={(event) => event.preventDefault()}>
+          <Form.Control 
+            type="text"
+            value={query}
+            className="mr-sm-2"
+            placeholder="Search posts"
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        </Form>
+
         {hasLoaded ? (
           <>
             {posts.results.length ? (
