@@ -22,7 +22,7 @@ export const MoreDropdown = ({handleEdit, handleDelete}) => {
                 className="text-center"
                 popperConfig={{ strategy: "fixed" }}
             >
-                <Dropdown.Item 
+                <Dropdown.Item
                     className={styles.DropdownItem}
                     onClick={handleEdit}
                     aria-label="edit"
