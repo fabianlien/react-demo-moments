@@ -24,7 +24,7 @@ import NoResults from "../../components/assets/no-results.png"
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({results: []});
-  const setProfileData = useSetProfileData();
+  const {setProfileData, handleFollow} = useSetProfileData();
   const {pageProfile} = useProfileData();
   const [profile] = pageProfile.results;
   const currentUser = useCurrentUser();
@@ -84,7 +84,7 @@ function ProfilePage() {
             ) : (
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Black}`}
-                onClick={() => {}}
+                onClick={() => handleFollow(profile)}
               >follow</Button>
             )
           )}
