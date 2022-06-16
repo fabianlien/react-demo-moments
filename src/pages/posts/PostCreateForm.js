@@ -15,11 +15,11 @@ import Asset from "../../components/Asset";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
-
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -27,7 +27,6 @@ function PostCreateForm() {
   })
 
   const { title, content, image } = postData
-
   const imageInput = useRef(null)
   const history = useHistory()
 
