@@ -1,5 +1,8 @@
 import React from 'react'
-import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Media from 'react-bootstrap/Media';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { axiosRes } from '../api/axiosDefaults';
@@ -37,7 +40,7 @@ const Post = (props) => {
         try {
             await axiosRes.delete(`/posts/${id}/`)
         } catch (err) {
-            console.log(err)
+            //console.log(err)
         }
         history.goBack()
     }
@@ -54,7 +57,7 @@ const Post = (props) => {
                 })
             }));
         } catch(err) {
-            console.log(err);
+            //console.log(err);
         }
     }
 
@@ -70,7 +73,7 @@ const Post = (props) => {
                 })
             }));
         } catch(err) {
-            console.log(err)
+            //console.log(err)
         }
     };
 
